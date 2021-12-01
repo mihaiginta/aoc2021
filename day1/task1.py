@@ -1,7 +1,10 @@
+# %%
+import numpy as np
+
 filename = "example1"
 
-with open(filename) as file:
-    lines = file.readlines()
-    lines = [line.rstrip() for line in lines]
+arr = np.fromfile(filename, sep='\n')
 
-print(lines)
+darr=np.diff(arr)
+
+sum = np.sum(np.array(darr) >= 0, axis=0)
