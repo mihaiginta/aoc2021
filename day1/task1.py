@@ -1,10 +1,17 @@
 # %%
 import numpy as np
 
-filename = "example1"
+def sum_positive_changes (arr):
+    darr=np.diff(arr)
+    sum = np.sum(np.array(darr) > 0, axis=0)
+    return sum
+
+filename = "input1"
 
 arr = np.fromfile(filename, sep='\n')
 
-darr=np.diff(arr)
+print(sum_positive_changes (arr))
 
-sum = np.sum(np.array(darr) >= 0, axis=0)
+marr = np.convolve(arr, np.ones(3), 'valid')
+
+print(sum_positive_changes (marr))
