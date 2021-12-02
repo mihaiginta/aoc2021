@@ -15,3 +15,4 @@ print(sum_positive_changes (arr))
 marr = np.convolve(arr, np.ones(3), 'valid')
 
 print(sum_positive_changes (marr))
+# %%
