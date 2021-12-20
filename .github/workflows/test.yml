@@ -14,7 +14,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          python-version: ${{ python-version }}
+          python-version: ${ python-version }
     - name: Conda info
         shell: bash -l {0}
         run: conda info
