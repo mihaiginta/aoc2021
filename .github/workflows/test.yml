@@ -15,8 +15,9 @@ jobs:
         auto-update-conda: true
         python-version: 3.10.0
         activate-environment: aoc2021
-        environment-file: environment.yml
-        auto-activate-base: false
+        environment-file: ./environment.yml
+        auto-activate-base: false        
+        miniforge-version: latest
     - name: Conda info
       shell: bash
       run: conda info
