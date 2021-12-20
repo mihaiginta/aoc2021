@@ -10,6 +10,15 @@ jobs:
       fail-fast: false
 
     steps:
+    - name: Cache conda
+      uses: actions/cache@v2
+      env:
+          # Increase this value to reset cache if environment.yml has not changed
+          CACHE_NUMBER: 0
+      with:
+          path: ~/conda_pkgs_dir
+          key:
+            ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{hashFiles('environment.yml') }}
     - uses: conda-incubator/setup-miniconda@v2
       with:
         auto-update-conda: true
@@ -17,6 +26,9 @@ jobs:
         auto-activate-base: false        
         miniforge-version: latest
         activate-environment: aoc2021
+        channel-priority: strict
+        environment-file: environment.yml
+        use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
     - name: Conda info
       shell: bash
       run: conda info
@@ -29,15 +41,6 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Cache conda
-      uses: actions/cache@v2
-      env:
-          # Increase this value to reset cache if environment.yml has not changed
-          CACHE_NUMBER: 0
-      with:
-          path: ~/conda_pkgs_dir
-          key:
-            ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{hashFiles('environment.yml') }}
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name aoc2021
