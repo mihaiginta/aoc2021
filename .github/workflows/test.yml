@@ -1,12 +1,11 @@
-name: Python Package using Conda
+name: Run pytest using conda in Ubuntu
 
 on: [push]
 
 jobs:
-  build-linux:
+  linux:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 5
       fail-fast: false
 
     steps:
@@ -16,6 +15,7 @@ jobs:
         python-version: 3.10.0
         auto-activate-base: false        
         miniforge-version: latest
+        activate-environment: aoc2021
     - name: Conda info
       shell: bash
       run: conda info
