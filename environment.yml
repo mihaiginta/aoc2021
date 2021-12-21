@@ -1,0 +1,16 @@
+name: aoc2021
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytest
+  - numpy
+  - ipykernel
+  - cvxpy
+  - pandas
+  - autopep8
+  - scikit-image
+  - pylint
+  - black
+  - pre-commit
