@@ -6,10 +6,9 @@ os.chdir(os.path.dirname(__file__))
 
 
 class Player:
-    def __init__(self, initialPosition, dice, name):
+    def __init__(self, initialPosition, dice):
         self.position = initialPosition
         self.dice = dice
-        self.name = name
         self.score = 0
 
     def rollDice(self):
@@ -35,21 +34,16 @@ class Dice:
 
 # %%
 dice = Dice()
-player1 = Player(6, dice, "1")
-player2 = Player(10, dice, "2")
+player1 = Player(6, dice)
+player2 = Player(10, dice)
 
 while True:
     player1.rollDice()
     if player1.score >= 1000:
-        winner = 1
+        print(player2.score * dice.rollsCount)
         break
     player2.rollDice()
     if player2.score >= 1000:
-        winner = 2
+        print(player1.score * dice.rollsCount)
         break
-
-if winner == 1:
-    print(player2.score * dice.rollsCount)
-else:
-    print(player1.score * dice.rollsCount)
 # %%
